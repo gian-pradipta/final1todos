@@ -42,7 +42,7 @@ func (t *todorepo) GetAll() (error, []entity.Todos) {
 
 	return err, todos
 }
-func (t *todorepo) GetOne(id uint) (error, entity.Todos) {
+func (t *todorepo) GetOne(id int) (error, entity.Todos) {
 	var err error
 	db := t.db
 
@@ -67,7 +67,7 @@ func (t *todorepo) Create(newTodo entity.Todos) error {
 	return err
 
 }
-func (t *todorepo) Update(newTodo entity.Todos, id uint) error {
+func (t *todorepo) Update(newTodo entity.Todos, id int) error {
 	var err error
 	db := t.db
 
@@ -76,7 +76,7 @@ func (t *todorepo) Update(newTodo entity.Todos, id uint) error {
 
 	return err
 }
-func (t *todorepo) Delete(id uint) error {
+func (t *todorepo) Delete(id int) error {
 	var err error
 	db := t.db
 
