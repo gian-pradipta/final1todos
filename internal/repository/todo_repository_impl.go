@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"errors"
 	"final_satu/internal/database"
 	"final_satu/internal/entity"
 	"log"
@@ -51,10 +52,14 @@ func (t *todorepo) GetOne(id int) (error, entity.Todos) {
 	defer rows.Close()
 
 	var todo entity.Todos
+	totalColumn := 0
 	for rows.Next() {
 		err = rows.Scan(&todo.Nama, &todo.TanggalMulai, &todo.TanggalSelesai, &todo.Deskripsi)
+		totalColumn++
 	}
-
+	if totalColumn == 0 {
+		err = errors.New("No Data Found")
+	}
 	return err, todo
 }
 func (t *todorepo) Create(newTodo entity.Todos) error {
@@ -71,8 +76,8 @@ func (t *todorepo) Update(newTodo entity.Todos, id int) error {
 	var err error
 	db := t.db
 
-	query := "UPDATE todos SET nama = ?, tanggal_mulai = ?, tanggal_selesai = ?, deskripsi = ?"
-	_, err = db.Exec(query, newTodo.Nama, newTodo.TanggalMulai, newTodo.TanggalSelesai, newTodo.Deskripsi)
+	query := "UPDATE todos SET nama = ?, tanggal_mulai = ?, tanggal_selesai = ?, deskripsi = ? WHERE id = ?"
+	_, err = db.Exec(query, newTodo.Nama, newTodo.TanggalMulai, newTodo.TanggalSelesai, newTodo.Deskripsi, id)
 
 	return err
 }

@@ -1,24 +1,59 @@
 package main
 
 import (
-	"final_satu/internal/entity"
+	"final_satu/internal/controller"
 	"final_satu/internal/repository"
+	"final_satu/internal/service"
 	"fmt"
-	"log"
+
+	_ "final_satu/docs"
+
+	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"     // swagger embed files
+	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
 )
 
+// @title           Swagger Example API
+// @version         1.0
+// @description     This is a sample server celler server.
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:8080
+// @BasePath  /api/v1
+
+// @securityDefinitions.basic  BasicAuth
+
+// @externalDocs.description  OpenAPI
+// @externalDocs.url          https://swagger.io/resources/open-api/
+
+func route(r *gin.Engine, ctr controller.Controller) {
+	r.GET("/todos", ctr.GetAll)
+	r.GET("/todos/:id", ctr.GetOne)
+	r.POST("/todos/", ctr.Create)
+	r.DELETE("/todos/:id", ctr.Delete)
+	r.PUT("/todos/:id", ctr.Update)
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+}
+
+func startRouter(r *gin.Engine, ctr controller.Controller) {
+	route(r, ctr)
+	r.Run(":8080")
+}
 func main() {
-	var err error
+	// var err error
 	fmt.Println("Hello, world!")
 	db := repository.New()
-	err = db.Update(entity.Todos{
-		1, "Andi", "s", "s", "s",
-	}, 1)
-	err, todos := db.GetAll()
-	if err != nil {
-		log.Fatal(err)
-	}
-	for _, i := range todos {
-		fmt.Println(i)
-	}
+
+	r := gin.Default()
+	s := service.New(db)
+	ctr := controller.New(s)
+
+	startRouter(r, ctr)
 }
