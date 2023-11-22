@@ -38,13 +38,13 @@ func (ctr *controller) GetOne(c *gin.Context) {
 	id := c.Param("id")
 	validId, err := validateId(id)
 	if err != nil {
-		httpError = dto.NewHTTPError(http.StatusBadRequest, err.Error())
+		httpError = dto.NewHTTPError(http.StatusBadRequest, "Invalid ID")
 		goto ERROR_HANDLER
 	}
 
 	response, err = ctr.service.GetOne(validId)
 	if err != nil {
-		httpError = dto.NewHTTPError(http.StatusNotFound, err.Error())
+		httpError = dto.NewHTTPError(http.StatusNotFound, "Failed to get Data")
 		goto ERROR_HANDLER
 	}
 
@@ -75,7 +75,7 @@ func (ctr *controller) GetAll(c *gin.Context) {
 	var responses []dto.TodosResponseBody
 	responses, err = s.GetAll()
 	if err != nil {
-		httpError = dto.NewHTTPError(httpCode, err.Error())
+		httpError = dto.NewHTTPError(httpCode, "Failed to get data")
 		goto ERROR_HANDLER
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -106,13 +106,13 @@ func (ctr *controller) Create(c *gin.Context) {
 
 	newTodo, err = getDTOCreateRequest(c, []string{"nama", "tanggal_mulai", "tanggal_selesai", "deskripsi"})
 	if err != nil {
-		httpError = dto.NewHTTPError(httpCode, err.Error())
+		httpError = dto.NewHTTPError(httpCode, "Invalid Request")
 		goto ERROR_HANDLER
 	}
 
 	err = ctr.service.Create(newTodo)
 	if err != nil {
-		httpError = dto.NewHTTPError(httpCode, err.Error())
+		httpError = dto.NewHTTPError(httpCode, "Failed to create data")
 		goto ERROR_HANDLER
 	}
 
