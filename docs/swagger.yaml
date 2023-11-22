@@ -1,4 +1,4 @@
-basePath: /api/v1
+basePath: /
 definitions:
   dto.HTTPError:
     properties:
@@ -79,7 +79,7 @@ paths:
       summary: Create new Todos
       tags:
       - todos
-  /todos/:id:
+  /todos/{id}:
     delete:
       description: Delete one todos base don the ID supplied by the user
       parameters:

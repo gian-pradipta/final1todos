@@ -29,7 +29,7 @@ func New(service service.Service) Controller {
 // @Success      200  {object} dto.TodosResponseBody
 // @Failure      400  {object}  dto.HTTPError
 // @Failure      404  {object}  dto.HTTPError
-// @Router       /todos/:id [get]
+// @Router       /todos/{id} [get]
 func (ctr *controller) GetOne(c *gin.Context) {
 	var err error
 	var response dto.TodosResponseBody
@@ -134,7 +134,7 @@ ERROR_HANDLER:
 // @Success      200  {object} dto.TodosResponseBody
 // @Failure      400  {object}  dto.HTTPError
 // @Failure      404  {object}  dto.HTTPError
-// @Router       /todos/:id [put]
+// @Router       /todos/{id} [put]
 func (ctr *controller) Update(c *gin.Context) {
 	var err error
 	var httpCode int = http.StatusBadRequest
@@ -178,7 +178,7 @@ ERROR_HANDLER:
 // @Success      200  {object} dto.TodosResponseBody
 // @Failure      404  {object}  dto.HTTPError
 // @Failure      400  {object}  dto.HTTPError
-// @Router       /todos/:id [delete]
+// @Router       /todos/{id} [delete]
 func (ctr *controller) Delete(c *gin.Context) {
 	var id string = c.Param("id")
 	var err error

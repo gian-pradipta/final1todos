@@ -26,7 +26,7 @@ import (
 // @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 
 // @host      localhost:8080
-// @BasePath  /api/v1
+// @BasePath  /
 
 // @securityDefinitions.basic  BasicAuth
 
@@ -50,7 +50,7 @@ func main() {
 	// var err error
 	fmt.Println("Hello, world!")
 	db := repository.New()
-
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 	s := service.New(db)
 	ctr := controller.New(s)

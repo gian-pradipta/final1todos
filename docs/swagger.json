@@ -16,7 +16,7 @@
         "version": "1.0"
     },
     "host": "localhost:8080",
-    "basePath": "/api/v1",
+    "basePath": "/",
     "paths": {
         "/todos/": {
             "get": {
@@ -77,7 +77,7 @@
                 }
             }
         },
-        "/todos/:id": {
+        "/todos/{id}": {
             "get": {
                 "description": "get one todos",
                 "produces": [
