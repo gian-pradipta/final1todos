@@ -15,8 +15,8 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8080",
-    "basePath": "/",
+    "host": "\"\"",
+    "basePath": "https://final1todos-production.up.railway.app/",
     "paths": {
         "/todos/": {
             "get": {
