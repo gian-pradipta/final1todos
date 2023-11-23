@@ -24,9 +24,9 @@ import (
 
 // @license.name  Apache 2.0
 // @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
-
-// @host      ""
-// @BasePath  https://final1todos-production.up.railway.app/
+// @schemes https
+// @host final1todos-production.up.railway.app
+// @BasePath /
 
 // @securityDefinitions.basic  BasicAuth
 

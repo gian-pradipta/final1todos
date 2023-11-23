@@ -1,4 +1,7 @@
 {
+    "schemes": [
+        "https"
+    ],
     "swagger": "2.0",
     "info": {
         "description": "This is a sample server celler server.",
@@ -15,8 +18,8 @@
         },
         "version": "1.0"
     },
-    "host": "\"\"",
-    "basePath": "https://final1todos-production.up.railway.app/",
+    "host": "final1todos-production.up.railway.app",
+    "basePath": "/",
     "paths": {
         "/todos/": {
             "get": {
