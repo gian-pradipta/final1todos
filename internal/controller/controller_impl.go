@@ -95,6 +95,7 @@ ERROR_HANDLER:
 // @Description  Create New Todos based on valid json request
 // @Tags         todos
 // @Accept       json
+// @param		request body dto.TodosRequestBody true "Create todo request"
 // @Success      200  {object} dto.TodosResponseBody
 // @Failure      400  {object}  dto.HTTPError
 // @Router       /todos/ [post]
@@ -130,7 +131,8 @@ ERROR_HANDLER:
 // @Description  Update one todos based on the ID and JSON supplied by the user
 // @Tags         todos
 // @Accept       json
-// @param id path int true "ID of todos to be updated"
+// @param 		id path int true "ID of todos to be updated"
+// @param 		request body dto.TodosRequestBody true "Update todo request"
 // @Success      200  {object} dto.TodosResponseBody
 // @Failure      400  {object}  dto.HTTPError
 // @Failure      404  {object}  dto.HTTPError

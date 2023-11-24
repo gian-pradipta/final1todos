@@ -7,6 +7,22 @@ definitions:
       errMessage:
         type: string
     type: object
+  dto.TodosRequestBody:
+    properties:
+      deskripsi:
+        type: string
+      nama:
+        type: string
+      tanggal_mulai:
+        type: string
+      tanggal_selesai:
+        type: string
+    required:
+    - deskripsi
+    - nama
+    - tanggal_mulai
+    - tanggal_selesai
+    type: object
   dto.TodosResponseBody:
     properties:
       deskripsi:
@@ -67,6 +83,13 @@ paths:
       consumes:
       - application/json
       description: Create New Todos based on valid json request
+      parameters:
+      - description: Create todo request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.TodosRequestBody'
       responses:
         "200":
           description: OK
@@ -140,6 +163,12 @@ paths:
         name: id
         required: true
         type: integer
+      - description: Update todo request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.TodosRequestBody'
       responses:
         "200":
           description: OK

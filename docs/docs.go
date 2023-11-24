@@ -67,6 +67,17 @@ const docTemplate = `{
                     "todos"
                 ],
                 "summary": "Create new Todos",
+                "parameters": [
+                    {
+                        "description": "Create todo request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.TodosRequestBody"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -139,6 +150,15 @@ const docTemplate = `{
                         "name": "id",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "description": "Update todo request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.TodosRequestBody"
+                        }
                     }
                 ],
                 "responses": {
@@ -208,6 +228,29 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "errMessage": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.TodosRequestBody": {
+            "type": "object",
+            "required": [
+                "deskripsi",
+                "nama",
+                "tanggal_mulai",
+                "tanggal_selesai"
+            ],
+            "properties": {
+                "deskripsi": {
+                    "type": "string"
+                },
+                "nama": {
+                    "type": "string"
+                },
+                "tanggal_mulai": {
+                    "type": "string"
+                },
+                "tanggal_selesai": {
                     "type": "string"
                 }
             }
